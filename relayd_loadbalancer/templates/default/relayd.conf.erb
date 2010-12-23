@@ -1,0 +1,26 @@
+
+# macros
+<% @relayd[:macros].each{|macro,value| %>
+<%= macro %>="<%= value %>"
+<% } %>
+
+# tables
+<%= @relayd[:tables].inspect %>
+
+# options
+
+<% @relayd[:options].each{|option,value| %>
+<%= option %> <%= value.to_s %>
+<% } %>
+
+
+<% @relayd[:relay].each{|relay,options| %>
+relay <%= relay %> {
+    <% options[:listen].each{|listen_rule| %>
+    listen <%= listen_rule %>
+    <% } %>
+     <% options[:forward].each{|forward_rule| %>
+    forward <%= forward_rule %>
+    <% } %>
+}
+<% } %>

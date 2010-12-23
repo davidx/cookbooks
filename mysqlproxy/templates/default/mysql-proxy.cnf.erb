@@ -1,0 +1,48 @@
+# MySQL Proxy's configuration file (mysql-proxy.cnf)
+# This file must be 0660 or more restrictive
+# otherwise mysql-proxy will refuse to load
+[mysql-proxy]
+#basedir = ...
+#daemon = true
+#defaults-file = ...
+#event-threads = ...
+keepalive = true
+log-backtrace-on-crash = true
+log-file = /var/log/mysql/mysql-proxy.log
+log-level = debug
+#log-use-syslog = true
+#lua-cpath = ...
+#lua-path = ...
+#max-open-files = ...
+pid-file = /var/run/mysql-proxy.pid
+plugin-dir = /usr/lib64/mysql-proxy/plugins
+#plugins = admin,proxy,debug,replicant
+#plugins = admin,proxy
+plugins = proxy,debug
+#user = ...
+
+# module: admin
+admin-address = 0.0.0.0:4141
+#admin-lua-script = ...
+admin-password = welcome1a4000
+admin-username = admin
+
+# module: proxy
+#no-proxy = false
+proxy-address = 0.0.0.0:3306
+
+#proxy-backend-addresses = 127.0.0.1:3307
+proxy-backend-addresses = <%= node[:mysql_proxy][:databases][:dev][:masters].join(',') %>
+proxy-fix-bug-25371 = false
+
+proxy-read-only-backend-addresses = <%= node[:mysql_proxy][:databases][:dev][:slaves].join(',') %>
+proxy-skip-profiling = false
+
+# module: replicant
+#replicant-master-address = ...
+#replicant-username = ...
+#replicant-password = ...
+#replicant-read-binlogs = ...
+
+# module: debug
+debug-address = 127.0.0.1:4043

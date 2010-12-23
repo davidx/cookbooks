@@ -1,0 +1,12 @@
+<IfDefine PASSENGER>
+LoadModule passenger_module <%= @node[:ruby][:current][:prefix] %>/lib/ruby/gems/1.8/gems/passenger-<%= @node[:passenger][:version]%>/ext/apache2/mod_passenger.so
+PassengerRoot <%= @node[:ruby][:current][:prefix] %>/lib/ruby/gems/1.8/gems/passenger-<%= @node[:passenger][:version]%>
+PassengerRuby <%= @node[:ruby][:current][:prefix] %>/bin/ruby
+PassengerLogLevel 0
+RailsAutoDetect On
+PassengerMaxPoolSize 15
+PassengerPoolIdleTime 120
+PassengerMaxInstancesPerApp 15
+PassengerUserSwitching On
+PassengerDefaultUser ip
+</IfDefine>

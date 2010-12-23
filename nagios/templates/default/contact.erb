@@ -1,0 +1,21 @@
+<% node[:nagios][:contacts].each do|contact| -%>
+define contact{
+        contact_name                    <%=  contact[:name] %>;
+        alias                           <%=  contact[:alias] %>;
+        service_notification_period     <%= contact[:service_notification_period] ||'24/7' %>;
+        host_notification_period        <%= contact[:host_notification_period] || '24x7' %>;
+        service_notification_options    <%= contact[:service_notification_options] ||'w,u,c,r' %>;
+        host_notification_options       <%= contact[:host_notification_options] ||'d,u' %>;
+        service_notification_commands   <%= contact[:service_notification_commands] || 'notify-service-by-email' %>;
+        host_notification_commands      <%= contact[:host_notification_commands] || 'notify-host-by-email' %>;
+        email                           <%= contact[:email] %>;
+}
+    <% end %>
+
+<% node[:nagios][:contact_groups].each do |contact_group| %>
+define contactgroup{
+        contactgroup_name       <%= contact_groups[:name] %>
+        alias                   <%= contact_groups[:alias] %>
+        members                 <%= contact_groups[:members].join(',') %>
+        }
+<% end %>

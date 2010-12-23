@@ -1,0 +1,20 @@
+# generated from chef
+
+ext_if="<%= @node[:pf][:ext_if] %>"
+
+tcp_services="{ 80, 443 }"
+web_vip1="10.10.12.102"
+web_pool1="{ 10.10.10.51 10.10.10.52 }"
+
+set skip on lo 
+
+scrub in
+
+rdr-anchor "relayd/*"
+anchor "relayd/*"
+
+#pass in quick on $int_if
+
+pass in on $ext_if inet proto tcp from any to $web_vip1 port $tcp_services flags S/SA keep state 
+
+pass out keep state

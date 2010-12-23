@@ -1,0 +1,23 @@
+<% Chef::Log.debug node[:nagios] %>
+
+<% node[:nagios][:hosts].each{|host| %>
+
+define host{
+	    use                             linux-server  ;
+        host_name                       <%= host %>
+        alias                           <%= host %>
+        address                         <%= host %>
+        check_command                   check-host-alive
+       
+}
+ <% } %>
+<% node[:nagios][:groups].each{|group| %>
+
+define hostgroup{
+        hostgroup_name          <%= group %>
+        alias                   <%= group %> Servers
+        members                 <%= ec2_servers(group.to_sym) %>
+}
+
+<% } %>
+

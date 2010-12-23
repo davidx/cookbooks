@@ -1,0 +1,43 @@
+define command{
+  command_name    check_gmetric
+  command_line    /data/ops/current/monitoring/plugins/check_gmetric.rb -H $ARG1$ --metric="$ARG2$" --threshold="$ARG3$" --operator="$ARG4$"
+}
+define command{
+  command_name    check_search
+  command_line    /data/ops/current/monitoring/plugins/check_search.rb -H $ARG1$ --port="$ARG2$"
+}
+define command{
+  command_name    check_smtp
+  command_line    /data/ops/current/monitoring/plugins/check_smtp.rb -H $HOSTADDRESS$ --port="$ARG1$"
+}
+define command{
+  command_name    check_app
+  command_line    /usr/lib/nagios/plugins/check_http -H $HOSTADDRESS$ --url="/CA/SanFrancisco"
+}
+define command{
+  command_name    check_static
+  command_line    /usr/lib/nagios/plugins/check_http -H $HOSTADDRESS$ --url="/favicon.ico"
+}
+define command{
+  command_name    check_cdn
+  command_line    /usr/lib/nagios/plugins/check_http -H $HOSTADDRESS$ --url="/javascripts/base_packaged.js?1256257810"
+}
+define command{
+  command_name    check_dns
+  command_line    /data/ops/current/monitoring/plugins/check_dns.rb -H $HOSTADDRESS$ --query app4.insiderpages.com
+}
+
+define command{
+        command_name    check-host-alive
+        command_line    /usr/lib/nagios/plugins/check_ping -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -p 1
+}
+define command{
+        command_name    notify-service-by-email
+        command_line    /usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$" | /bin/mail -s "** $NOTIFICATIONTYPE$ Service Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$
+        }
+
+define command{
+        command_name    notify-host-by-email
+        command_line    /usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LONGDATETIME$\n" | /bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTEMAIL$
+        }
+

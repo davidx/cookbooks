@@ -1,0 +1,47 @@
+
+<% node[:nagios][:df_services].each do |df_service|
+	host,services = df_service
+    next unless node[:nagios][:hosts].include?(host)
+    
+	services.each do |service| %>
+
+
+define service{
+      host_name               <%= host %>
+      service_description     check_<%= service %>
+  	  check_command           check_gmetric!<%= host %>!<%= service %>!85!>
+	  max_check_attempts      10
+      normal_check_interval   1 
+      retry_check_interval    1
+      check_period            24x7
+      notification_interval   60
+      notification_period     24x7
+      notification_options    c,r
+      contact_groups          admins
+}
+     <% end %>
+
+<% end %>
+
+
+<% node[:nagios][:roles].each{|role, role_options| %>
+
+<% role_options[:service_checks].each{|role,check_arguments| %>
+<% role_options[:hosts].each{|host| %>
+define service{
+      host_name               <%= host %>
+      service_description     <%= service_check %>
+  	  check_command           <%= service_check %>!<%= host %>!<%= check_arguments %>
+	  max_check_attempts      10
+      normal_check_interval   1
+      retry_check_interval    1
+      check_period            24x7
+      notification_interval   60
+      notification_period     24x7
+      notification_options    c,r
+      contact_groups          admins
+}
+
+  <% } %>
+<% } %>
+<% } %>

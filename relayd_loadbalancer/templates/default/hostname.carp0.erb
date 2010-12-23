@@ -1,0 +1,1 @@
+inet <%= @node[:loadbalancer][:ext_if][:carp][:ip] %> <%= @node[:loadbalancer][:ext_if][:carp][:netmask] %> <%= @node[:loadbalancer][:ext_if][:carp][:broadcast] %> vhid 1 advbase 20 advskew 0 carpdev <%= @node[:loadbalancer][:ext_if][:name] %> pass <%= @node[:loadbalancer][:ext_if][:carp][:password] %>

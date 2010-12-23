@@ -1,0 +1,28 @@
+# $OpenBSD: relayd.conf,v 1.13 2008/03/03 16:58:41 reyk Exp $
+#
+# Macros
+#
+
+#
+# Global Options
+#
+# interval 10
+timeout 5000
+prefork 10 
+
+#
+# Each table will be mapped to a pf table.
+#
+<% @node[:relayd][:tables].each{|table, pool| %>
+table <<%= table %>> { <%= pool.join(' ') %> }
+<% } %>
+#
+# Services will be mapped to a rdr rule.
+#
+<% @node[:relayd][:relays].each{|relay, options| %>
+relay <%= relay %> {
+	listen on <%= options[:listen_ip] %> port <%= options[:listen_port] %>
+
+	forward to <<%= options[:table] %>> mode <%= options[:mode] %> check <%= options[:check] %>
+}
+<% } %>

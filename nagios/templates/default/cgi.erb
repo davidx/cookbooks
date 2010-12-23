@@ -1,0 +1,27 @@
+main_config_file=/etc/nagios/nagios.cfg
+physical_html_path=/usr/nagios/share
+url_html_path=/nagios
+show_context_help=0
+#nagios_check_command=/usr/nagios/libexec/check_nagios /var/nagios/status.dat 5 '/usr/nagios/bin/nagios'
+use_authentication=1
+default_user_name=nagios
+authorized_for_system_information=nagios
+authorized_for_configuration_information=nagios
+authorized_for_system_commands=nagios
+authorized_for_all_services=nagios,guest
+authorized_for_all_hosts=nagios,guest
+authorized_for_all_service_commands=nagios
+authorized_for_all_host_commands=nagios
+#statusmap_background_image=smbackground.gd2
+
+default_statusmap_layout=5
+default_statuswrl_layout=4
+#statuswrl_include=myworld.wrl
+
+ping_syntax=/bin/ping -n -U -c 5 $HOSTADDRESS$
+
+refresh_rate=90
+
+
+
+

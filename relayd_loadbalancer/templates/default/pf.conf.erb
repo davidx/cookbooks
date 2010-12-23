@@ -1,0 +1,40 @@
+
+# Do not edit! Generated from chef
+
+# macros
+<% @node[:loadbalancer][:pf][:macros].each{|macro,value| %>
+<%= macro %>="<%= value %>"
+<% } %>
+
+# options
+<% @node[:loadbalancer][:pf][:options].each{|option,value| %>
+set <%= option %> <%= value %>
+<% } %>
+
+
+# scrub
+<% @node[:loadbalancer][:pf][:scrub].each{|rule| %>
+scrub <%= rule %>
+<% } %>
+
+# nat
+
+<% @node[:loadbalancer][:pf][:scrub].each{|rule| %>
+nat <%= rule %>
+<% } %>
+
+# nat-anchor
+<% @node[:loadbalancer][:pf][:nat_anchor].each{|rule| %>
+nat-anchor "<%= rule %>"
+<% } %>
+
+
+# rdr
+<% @node[:loadbalancer][:pf][:rdr].each{|rule| %>
+rdr "<%= rule %>"
+<% } %>
+
+# filter rules
+<% @node[:loadbalancer][:pf][:filter].each{|rule| %>
+<%= rule %>
+<% } %>

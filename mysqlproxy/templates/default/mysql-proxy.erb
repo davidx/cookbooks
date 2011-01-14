@@ -1,0 +1,9 @@
+# /etc/conf.d/mysql-proxy: config file for /etc/init.d/mysql-proxy
+
+# location of pidfile
+PIDFILE="/var/run/mysql-proxy.pid"
+
+# general options for mysql-proxy
+# do NOT specify --daemon or --pid-file=... here!
+# example lua script path, to be integrated in recipe node
+OPTS="--defaults-file=/etc/mysql/mysql-proxy.cnf --proxy-lua-script=/data/ops/current/mysql-proxy/plugins/rw-splitting.lua"

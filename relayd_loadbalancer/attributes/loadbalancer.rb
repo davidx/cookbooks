@@ -1,7 +1,7 @@
 
+#these would normally be injected in the node at a higher level but are provides as an example for now.
 
-
-set_unless[:loadbalancer][:ext_if] = {
+set_unless[:loadbalancer][:interfaces][:ext_if] = {
 
         :name => 'em0',
         :ip => '10.10.10.171',
@@ -12,11 +12,12 @@ set_unless[:loadbalancer][:ext_if] = {
                 :ip => '10.10.10.170',
                 :netmask => '255.255.255.0',
                 :broadcast => '10.10.10.255',
-                :password => 'o2193i4dj2o3id'
+                :password => 'o2193i4dj2o3id',
+                :options => 'vhid 1 advbase 20 advskew 0'
         }
 }
 
-set_unless[:loadbalancer][:int_if] = {
+set_unless[:loadbalancer][:interfaces][:int_if] = {
 
         :name => 'em1',
         :ip => '10.0.0.11',
@@ -27,11 +28,12 @@ set_unless[:loadbalancer][:int_if] = {
                 :ip => '10.0.0.10',
                 :netmask => '255.255.255.0',
                 :broadcast => '10.0.0.255',
-                :password => 'o2wewewe234ewfd'
+                :password => 'o2wewewe234ewfd',
+                :options => 'vhid 1 advbase 20 advskew 0'
 
         }
 }
-set_unless[:loadbalancer][:pfsync_if] = {
+set_unless[:loadbalancer][:interfaces][:pfsync_if] = {
 
         :name => 'rl0',
         :ip => '172.16.0.10',

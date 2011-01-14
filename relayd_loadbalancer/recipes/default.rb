@@ -4,51 +4,59 @@
 # hostname.em0 hostname.em1 hostname.rl0
 # hostname.carp1 hostname.carp2 hostname.pfsync0 rc.conf.local
 
-template "/etc/testprefix/hostname." + node[:loadbalancer][:ext_if][:name] do
-  source "hostname.EXT_IF.erb"
-  mode 0644
-  variables(
-      :ext_if => node[:loadbalancer][:ext_if]
+node[:loadbalancer][:interfaces].each do|interface_name|
+
+  template "/etc/hostname.#{interface_name}" do
+    source "hostname.interface_name.erb"
+    mode 0644
+    nic = node[:loadbalancer][:interfaces][interface_name]
+    inet = "#{nic[:ip]} #{nic[:netmask]} NONE"
+    variables(
+         :inet => inet
     )
-
-end
-template "/etc/testprefix/hostname." + node[:loadbalancer][:int_if][:name] do
-  source "hostname.INT_IF.erb"
-  mode 0644
-end
-template "/etc/testprefix/hostname." + node[:loadbalancer][:pfsync_if][:name] do
-  source "hostname.PFSYNC_IF.erb"
-  mode 0644
+  end
 end
 
-template "/etc/testprefix/hostname.carp1" do
-  source "hostname.carp1.erb"
+template "/etc/hostname.carp0" do
+  source "hostname.interface_name.erb"
   mode 0644
+  nic = node[:loadbalancer][:ext_if]
+  carp = nic[:carp]
+  inet = "#{carp[:ip]} #{carp[:netmask]} #{carp[:broadcast]} #{carp[:options]} carpdev #{nic[:name]} pass #{carp[:password]}"
+  variables(
+      inet => inet
+  )
 end
 
-template "/etc/testprefix/hostname.carp1" do
-  source "hostname.carp1.erb"
+template "/etc/hostname.carp1" do
+  source "hostname.interface_name.erb"
   mode 0644
+  nic = node[:loadbalancer][:int_if]
+  carp = nic[:carp]
+  inet = "#{carp[:ip]} #{carp[:netmask]} #{carp[:broadcast]} #{carp[:options]} carpdev #{nic[:name]} pass #{carp[:password]}"
+  variables(
+      inet => inet
+  )
 end
-template "/etc/testprefix/hostname.pfsync0" do
-  source "hostname.pfsync0.erb"
+
+template "/etc/hostname.pfsync0" do
+  source "hostname.pfsync.erb"
   mode 0644
+
 end
-template "/etc/testprefix/hostname.pfsync0" do
-  source "hostname.pfsync0.erb"
-  mode 0644
-end
-template "/etc/testprefix/pf.conf" do
+
+template "/etc/pf.conf" do
   source "pf.conf.erb"
   mode 0644
 end
-template "/etc/testprefix/relayd.conf" do
+template "/etc/relayd.conf" do
   source "relayd.conf.erb"
   mode 0644
   variables(
       :relayd => node[:loadbalancer][:relayd]
     )
 end
+
 #template "/etc/sysctl.conf" do
 #    source "sysctl.conf.erb"
 #    mode 0644

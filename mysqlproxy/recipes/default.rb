@@ -1,12 +1,13 @@
-portage_package "mysql-proxy" do
-  action :install
-end
-
-service "mysql-proxy" do
-  action [:enable, :start]
-  supports :status => true, :start => true, :stop => true, :restart => true, :reload => true
-end
 template "/etc/mysql/mysql-proxy.cnf" do
   source "mysql-proxy.cnf.erb"
-  notifies :reload, "service[mysql-proxy]"  
+  notifies :restart, "service[mysql-proxy]"  
 end
+template "/etc/conf.d/mysql-proxy" do
+  source "mysql-proxy.erb"
+  notifies :restart, "service[mysql-proxy]"
+end
+service "mysql-proxy" do
+  action [:enable, :start]
+  supports :status => true, :start => true, :stop => true, :restart => true
+end
+

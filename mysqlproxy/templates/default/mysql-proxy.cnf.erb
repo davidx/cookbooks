@@ -15,7 +15,7 @@ log-level = debug
 #lua-path = ...
 #max-open-files = ...
 pid-file = /var/run/mysql-proxy.pid
-plugin-dir = /usr/lib64/mysql-proxy/plugins
+plugin-dir = /usr/lib/mysql-proxy/plugins
 #plugins = admin,proxy,debug,replicant
 #plugins = admin,proxy
 plugins = proxy,debug
@@ -24,7 +24,7 @@ plugins = proxy,debug
 # module: admin
 admin-address = 0.0.0.0:4141
 #admin-lua-script = ...
-admin-password = welcome1a4000
+admin-password = changemenowplease
 admin-username = admin
 
 # module: proxy
@@ -32,10 +32,10 @@ admin-username = admin
 proxy-address = 0.0.0.0:3306
 
 #proxy-backend-addresses = 127.0.0.1:3307
-proxy-backend-addresses = <%= node[:mysql_proxy][:databases][:dev][:masters].join(',') %>
+proxy-backend-addresses = <%= node[:mysql_proxy][:databases][:masters].join(',') %>
 proxy-fix-bug-25371 = false
 
-proxy-read-only-backend-addresses = <%= node[:mysql_proxy][:databases][:dev][:slaves].join(',') %>
+proxy-read-only-backend-addresses = <%= node[:mysql_proxy][:databases][:slaves].join(',') %>
 proxy-skip-profiling = false
 
 # module: replicant

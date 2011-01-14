@@ -20,7 +20,7 @@ globals {
  * tag that will wrap all hosts collected by this instance.
  */
 cluster {
-  name = "<%= node[:ec2][:security_groups].first %>"
+  name = "<%= node[:ganglia][:cluster[ %>"
   owner = "unspecified"
   latlong = "unspecified"
   url = "unspecified"

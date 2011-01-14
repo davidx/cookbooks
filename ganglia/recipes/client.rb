@@ -8,5 +8,5 @@ template "/etc/ganglia/gmond.conf" do
 end
 service "gmond" do
   action [:enable, :start]
-  supports :status => true, :start => true, :stop => true, :restart => true
+  supports :status => true, :start => true, :stop => true, :restart => true, :reload => true
 end

@@ -1,8 +1,4 @@
 
-Workflow :
- check a file, AC-23.rb for instance, evaluate the puppet script, look at resources like files or templates, in the original clip puppet directory structure. implement in chef syntax. update INCOMPLETE.
- this is just something i thought would be useful as it concerns a lot of files that were programmatically created, after they have been implemented in chef this file can be removed.
-
 Learn more about clip at:
 
 http://oss.tresys.com/projects/clip

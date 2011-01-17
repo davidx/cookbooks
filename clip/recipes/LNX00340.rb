@@ -1,10 +1,10 @@
 ## (LNX00340: CAT II) (Previously - L142) The SA will delete accounts that
 ## provide no operational purpose, such as games or operator, and will delete
 ## the associated software.
-class lnx00340 {
-	user { "news": ensure => absent; }
-	user { "operator": ensure => absent; }
-	user { "games": ensure => absent; }
-	user { "gopher": ensure => absent; }
-	user { "nfsnobody": ensure => absent; }
-}
+
+remove_users = %w[news operator games gopher nfsnobody]
+remove_users.each do |username|
+  user username do
+    action :remove
+  end
+end

@@ -1,6 +1,5 @@
-
 # default path for exec resources:
-Exec { path => "/usr/bin:/usr/sbin:/bin:/sbin" }
+environment({'PATH' => "/usr/bin:/usr/sbin:/bin:sbin"})
 
 ##########################################################################
 # CNSS-SCC
@@ -15,46 +14,42 @@ Exec { path => "/usr/bin:/usr/sbin:/bin:/sbin" }
 # AC-2: Account Management
 # Chef Actions:
 
-	# AC-2(1)
-	# Chef Actions: PROCEDURAL REQUIREMENT
+# AC-2(1)
+# Chef Actions: PROCEDURAL REQUIREMENT
 
-	# AC-2(2)
-	# Chef Actions: PROCEDURAL REQUIREMENT - Sysadmin must create temp accounts correctly	
+# AC-2(2)
+# Chef Actions: PROCEDURAL REQUIREMENT - Sysadmin must create temp accounts correctly
 
-	# AC-2(3)
-	# Chef Actions: PROCEDURAL REQUIREMENT
+# AC-2(3)
+# Chef Actions: PROCEDURAL REQUIREMENT
 
-	# AC-2(4)
-	# Chef Actions: PROCEDURAL REQUIREMENT
+# AC-2(4)
+# Chef Actions: PROCEDURAL REQUIREMENT
 
-	# AC-2(5)
-	# Chef Actions: PROCEDURAL REQUIREMENT
+# AC-2(5)
+# Chef Actions: PROCEDURAL REQUIREMENT
 
 # AC-3: Access Enforcement
 # Chef Actions:
-import "AC-3"
+include_recipe "AC-3"
 
-	# AC-3(1)
-	# Chef Actions:
+# AC-3(1)
+# Chef Actions:
 
-		include ac-3::p1
+# AC-3(2)
+# Chef Actions: No actions required
 
-	# AC-3(2)
-	# Chef Actions: No actions required
+# AC-3(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AC-3(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
-
-	# AC-3(4)
-	# Chef Actions: (Not required)
-
-		include ac-3::p4
+# AC-3(4)
+# Chef Actions: (Not required)
 
 # AC-4: Information Flow Enforcement
 # Chef Actions:
 
-	# AC-4(2)
-	# Chef Actions: None Requiered - Needs Installer Review (site specific policy)
+# AC-4(2)
+# Chef Actions: None Requiered - Needs Installer Review (site specific policy)
 
 # AC-5: Separation of Duties
 # Chef Actions: None Required - PROCEDURAL REQUIREMENT
@@ -62,27 +57,26 @@ import "AC-3"
 # AC-6: Least Privilege
 # Chef Actions:
 
-	# AC-6(1)
-	# Chef Actions: PROCEDURAL REQUIREMENT
+# AC-6(1)
+# Chef Actions: PROCEDURAL REQUIREMENT
 
 # AC-7: Unsuccessful Login Attempts
 # Chef Actions:
-import "AC-7"
+include_recipe "AC-7"
 
-	# AC-7(1)
-	# Chef Actions:
-		# 3 login attempts in 30 seconds; lock out for 1 minute
-		ac-7::p1 { "login_attempts":
-			failed_attempts => "3",
-			deny_interval => "30",
-			lockout_time => "60"
-		}
+# AC-7(1)
+# Chef Actions:
+# 3 login attempts in 30 seconds; lock out for 1 minute
+ac-7::p1 { "login_attempts" :
+    failed_attempts => "3",
+    deny_interval => "30",
+    lockout_time => "60"
+}
 
 # AC-8: System Use Notification
 # Chef Actions:
-import "AC-8"
+include_recipe "AC-8"
 
-	include ac-8::main
 
 # AC-9: Previous Logon Notification
 # Chef Actions: None Required
@@ -92,117 +86,108 @@ import "AC-8"
 
 # AC-11: Session Lock
 # Chef Actions:
-import "AC-11"
+include_recipe "AC-11"
 
-	# AC-11(1)
-	# Chef Actions:
-
-	include ac-11::p1
+# AC-11(1)
+# Chef Actions:
 
 # AC-12: Session Termination
 # Chef Actions:
 
-	# AC-12(1)
-	# Chef Actions:
-		
-		# Implemented in AC-11(1)
+# AC-12(1)
+# Chef Actions:
 
-	# AC-12(2)
-	# Chef Actions:
-		
-		# Implemented in AC-11(1)
+# Implemented in AC-11(1)
+
+# AC-12(2)
+# Chef Actions:
+
+# Implemented in AC-11(1)
 
 # AC-13: Supervision and Review—Access Control
 # Chef Actions:
 
-	# AC-13(1)
-	# Chef Actions: None Required - Needs Installer Review
+# AC-13(1)
+# Chef Actions: None Required - Needs Installer Review
 
 # AC-14: Permitted Actions without Identification or Authentication
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-14(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-14(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # AC-15: Automated Marking
 # Chef Actions:
-import "AC-15"
+include_recipe "AC-15"
 
-	include ac-15::main
 
-	# AC-15(1)
-	# See AC-15
+# AC-15(1)
+# See AC-15
 
 # AC-16: Automated Labeling
 # Chef Actions: None
 
 # AC-17: Remote Access
 # Chef Actions:
-import "AC-17"
+include_recipe "AC-17"
 
-	# AC-17(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-17(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-17(2)
-	# Chef Actions:
-		
-		include ac-17::p2
+# AC-17(2)
+# Chef Actions:
 
-	# AC-17(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-17(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-17(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-17(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-17(5)
-	# Chef Actions:
-		
-		include ac-17::p5
+# AC-17(5)
+# Chef Actions:
 
-	# AC-17(6)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-17(6)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-17(7)
-	# Chef Actions:
-	
-		include ac-17::p7
+# AC-17(7)
+# Chef Actions:
 
 # AC-18: Wireless Access Restrictions
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-18(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-18(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-18(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-18(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-18(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-18(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-18(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-18(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-18(5)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-18(5)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # AC-19: Access Control for Portable and Mobile Devices
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-19(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-19(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # AC-20: Use of External Information Systems
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AC-20(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AC-20(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # AC-21: Confidentiality of Data at Rest
 # Chef Actions:
 
-	# FIXME: Point out full disk encryption available.
-	# This is only when desired by information owner.
-	# Not required for all cases.
+# FIXME: Point out full disk encryption available.
+# This is only when desired by information owner.
+# Not required for all cases.
 
 # AC-22: Distinct Level of Access
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -238,66 +223,64 @@ import "AC-17"
 # AU-1: Audit and Accountability Policy and Procedures
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-1(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AU-1(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # AU-2: Auditable Events
 # Chef Actions: None Required - Installer responsible for ensuring organization defined audits happen
-import "AU-2"
+include_recipe "AU-2"
 
-	# AU-2(1)
-	# Chef Actions:
-		
-		include au-2::p1
+# AU-2(1)
+# Chef Actions:
 
-	# AU-2(2)
-	# Chef Actions: None Required (see auditd conf files)
+# AU-2(2)
+# Chef Actions: None Required (see auditd conf files)
 
-	# AU-2(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AU-2(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-2(4)
-	# Chef Actions:
-		
-		# implemented in AU-2(1)
-		
-	# AU-2(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT - capability present in RHEL5.3 audit subsystem
+# AU-2(4)
+# Chef Actions:
 
-	# AU-2(6)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# implemented in AU-2(1)
 
-	# AU-2(7)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-2(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT - capability present in RHEL5.3 audit subsystem
 
-	# AU-2(8)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-2(6)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-2(9)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-2(7)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-2(10)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-2(8)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+
+# AU-2(9)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+
+# AU-2(10)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # AU-3: Content of Audit Records
 # Chef Actions:
 
-	# AU-3(1)
-	# Chef Actions: No Actions Required
+# AU-3(1)
+# Chef Actions: No Actions Required
 
-	# AU-3(2)
-	# Chef Actions: No Actions Required
+# AU-3(2)
+# Chef Actions: No Actions Required
 
-	# AU-3(3)
-	# Chef Actions: No Actions Required
+# AU-3(3)
+# Chef Actions: No Actions Required
 
-	# AU-3(4)
-	# Chef Actions:
+# AU-3(4)
+# Chef Actions:
 
-		# Implemented in AU-2(1)
+# Implemented in AU-2(1)
 
-	# AU-3(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-3(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # AU-4: Audit Storage Capacity
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -305,104 +288,104 @@ import "AU-2"
 # AU-5: Response to Audit Processing Failures
 # Chef Actions:
 
-	# AU-5(1)
-	# Chef Actions:
+# AU-5(1)
+# Chef Actions:
 
-		# Implemented in AU-2(1)
+# Implemented in AU-2(1)
 
-	# AU-5(2)
-	# Chef Actions: PROCEDURAL - Org defined audit failure events required to perform  real time alert.
+# AU-5(2)
+# Chef Actions: PROCEDURAL - Org defined audit failure events required to perform  real time alert.
 
-	# AU-5(3)
-	# Chef Actions:
+# AU-5(3)
+# Chef Actions:
 
-		# Implemented in AU-2(1)
+# Implemented in AU-2(1)
 
 # AU-6: Audit Monitoring, Analysis, and Reporting
 # Chef Actions:
 
-	# AU-6(1)
-	# Chef Actions: No Actions Required
+# AU-6(1)
+# Chef Actions: No Actions Required
 
-	# AU-6(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AU-6(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-6(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AU-6(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-6(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-6(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-6(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-6(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # AU-7: Audit Reduction and Report Generation
 # Chef Actions:
 
-	# AU-7(1)
-	# Chef Actions: None - Site should decide on and install tool
+# AU-7(1)
+# Chef Actions: None - Site should decide on and install tool
 
-	# AU-7(2)
-	# Chef Actions: None - Site should decide on and install tool
+# AU-7(2)
+# Chef Actions: None - Site should decide on and install tool
 
 # AU-8: Time Stamps
 # Chef Actions:
 
-	# AU-8(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AU-8(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-8(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-8(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # AU-9: Protection of Audit Information
 # Chef Actions:
 
-	# implemented in AU-2(1)
+# implemented in AU-2(1)
 
-	# AU-9(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AU-9(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-9(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-9(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # AU-10: Non-repudiation
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-10(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-10(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-10(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-10(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-10(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-10(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-10(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-10(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # AU-11: Audit Record Retention
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-11(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-11(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-11(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# AU-11(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# AU-11(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-11(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-11(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-11(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # AU-12: Session Audit
 # Chef Actions: Has legal ramifications - implement with legal guidance
 
-	# AU-12(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-12(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# AU-12(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# AU-12(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 
 ###################################
@@ -420,14 +403,14 @@ import "AU-2"
 # CA-4: Security Certification
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CA-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CA-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CA-4(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CA-4(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# CA-4(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CA-4(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CA-5: Plan of Action and Milestones
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -438,11 +421,11 @@ import "AU-2"
 # CA-7: Continuous Monitoring
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CA-7(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CA-7(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CA-7(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CA-7(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 
 ###################################
@@ -454,29 +437,29 @@ import "AU-2"
 # CM-2: Baseline Configuration
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-2(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-2(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-2(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CM-2(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# CM-2(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CM-2(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # CM-3: Configuration Change Control
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-3(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-3(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-3(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-3(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-3(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-3(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CM-4: Monitoring Configuration Changes
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -484,44 +467,44 @@ import "AU-2"
 # CM-5: Access Restrictions for Change
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-5(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-5(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-5(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CM-5(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# CM-5(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-5(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-5(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-5(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CM-6: Configuration Settings
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-6(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-6(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CM-7: Least Functionality
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-7(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-7(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-7(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-7(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CM-8: Information System Component Inventory
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-8(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-8(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CM-8(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CM-8(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 
 ###################################
@@ -530,56 +513,56 @@ import "AU-2"
 # CP-1: Contingency Planning Policy and Procedures
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-1(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-1(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CP-2: Contingency Plan
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-2(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-2(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-2(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-2(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-2(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CP-2(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# CP-2(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CP-2(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# CP-2(6)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-2(6)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-2(7)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CP-2(7)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # CP-3: Contingency Training
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-3(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-3(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-3(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-3(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CP-4: Contingency Plan Testing and Exercises
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-4(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-4(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-4(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-4(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-4(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-4(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CP-5: Contingency Plan Update
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -587,86 +570,86 @@ import "AU-2"
 # CP-6: Alternate Storage Site
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-6(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-6(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-6(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-6(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-6(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-6(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-6(5)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-6(5)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-6(6)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CP-6(6)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # CP-7: Alternate Processing Site
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-7(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-7(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-7(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-7(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-7(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-7(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-7(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-7(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-7(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# CP-7(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# CP-7(6)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-7(6)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CP-8: Telecommunications Services
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-8(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-8(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-8(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-8(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-8(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-8(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-8(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-8(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CP-9: Information System Backup
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-9(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-9(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-9(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-9(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-9(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-9(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-9(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-9(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # CP-10: Information System Recovery and Reconstitution Identification and Authentication
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-10(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-10(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-10(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-10(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# CP-10(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# CP-10(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 
 ###################################
@@ -677,83 +660,81 @@ import "AU-2"
 
 # IA-2: User Identification and Authentication
 # Chef Actions:
-import "IA-2"
+include_recipe "IA-2"
 
-	include ia-2::main
+# IA-2(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# IA-2(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# IA-2(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# IA-2(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# IA-2(3)
+# Chef Actions: None - Site specific (Site needs to set up 2 factor system)
 
-	# IA-2(3)
-	# Chef Actions: None - Site specific (Site needs to set up 2 factor system)
+# IA-2(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# IA-2(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# IA-2(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# IA-2(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# IA-2(6)
+# Chef Actions: None - Site specific (Site needs to set up 2 factor system)
 
-	# IA-2(6)
-	# Chef Actions: None - Site specific (Site needs to set up 2 factor system)
+# IA-2(7)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# IA-2(7)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# IA-2(8)
+# Chef Actions: None - (No default use of certificates)
 
-	# IA-2(8)
-	# Chef Actions: None - (No default use of certificates)
-
-	# IA-2(9)
-	# Chef Actions: None - (No default use of group authenticators)
+# IA-2(9)
+# Chef Actions: None - (No default use of group authenticators)
 
 # IA-3: Device Identification and Authentication
 # Chef Actions: None - Site Specific
 
-	# IA-3(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# IA-3(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# IA-3(2)
-	# Chef Actions: None - Site Specific
+# IA-3(2)
+# Chef Actions: None - Site Specific
 
 # IA-4: Identifier Management
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IA-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IA-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IA-4(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IA-4(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IA-4(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IA-4(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IA-4(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IA-4(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # IA-5: Authenticator Management
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IA-5(1)
-	# Chef Actions: 
-	
-		# Implemented in AC-7(1)
-		# Implemented in AC-11(1)
-		# Implemented in AC-17(7)
-		# Implemented in IA-2
+# IA-5(1)
+# Chef Actions:
 
-	# IA-5(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# Implemented in AC-7(1)
+# Implemented in AC-11(1)
+# Implemented in AC-17(7)
+# Implemented in IA-2
 
-	# IA-5(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IA-5(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IA-5(4)
-	# Chef Actions: None if not using PKI
+# IA-5(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IA-5(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# IA-5(4)
+# Chef Actions: None if not using PKI
+
+# IA-5(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # IA-6: Authenticator Feedback
 # Chef Actions: None Required
@@ -768,50 +749,50 @@ import "IA-2"
 # IR-1: Incident Response Policy and Procedures
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-1(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-1(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # IR-2: Incident Response Training
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-2(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-2(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # IR-3: Incident Response Testing and Exercises
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-3(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-3(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-3(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-3(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # IR-4: Incident Handling
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # IR-5: Incident Monitoring
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-5(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-5(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # IR-6: Incident Reporting
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # IR-7: Incident Response Assistance
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# IR-7(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# IR-7(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 
 ###################################
@@ -823,74 +804,74 @@ import "IA-2"
 # MA-2: Controlled Maintenance
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-2(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-2(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # MA-3: Maintenance Tools
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-3(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-3(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-3(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-3(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-3(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-3(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-3(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-3(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # MA-4: Remote Maintenance
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-4(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-4(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-4(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-4(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-4(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# MA-4(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# MA-4(5)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-4(5)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-4(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# MA-4(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # MA-5: Maintenance Personnel
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-5(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-5(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-5(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-5(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-5(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-5(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-5(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-5(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-5(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# MA-5(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # MA-6: Timely Maintenance
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MA-6(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MA-6(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 
 ###################################
@@ -902,53 +883,53 @@ import "IA-2"
 # MP-2: Media Access
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # MP-3: Media Labeling
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-3(1)
-	# See AC-15
+# MP-3(1)
+# See AC-15
 
 # MP-4: Media Storage
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # MP-5: Media Transport
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-5(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-5(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-5(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-5(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-5(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-5(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-5(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# MP-5(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # MP-6: Media Sanitization and Disposal
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-6(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-6(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-6(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-6(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# MP-6(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# MP-6(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 
 ###################################
@@ -960,26 +941,26 @@ import "IA-2"
 # PE-2: Physical Access Authorizations
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-2(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-2(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-3: Physical Access Control
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-3(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-3(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-3(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-3(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-3(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# PE-3(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# PE-3(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# PE-3(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # PE-4: Access Control for Transmission Medium
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -990,86 +971,86 @@ import "IA-2"
 # PE-6: Monitoring Physical Access
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-6(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-6(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-7: Visitor Control
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-7(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-7(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-7(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# PE-7(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # PE-8: Access Records
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-8(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-8(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-8(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# PE-8(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # PE-9: Power Equipment and Power Cabling
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-9(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-9(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-9(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-9(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-10: Emergency Shutoff
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-10(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-10(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-11: Emergency Power
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-11(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-11(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-11(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# PE-11(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # PE-12: Emergency Lighting
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-12(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-12(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-13: Fire Protection
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-13(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-13(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-13(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-13(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-13(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-13(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-13(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-13(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-14: Temperature and Humidity Controls
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-14(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-14(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-15: Water Damage Protection
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-15(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-15(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-16: Delivery and Removal
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1080,26 +1061,26 @@ import "IA-2"
 # PE-18: Location of Information System Components
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-18(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-18(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-19: Information Leakage Planning
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-19(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# PE-19(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # PE-20: Physical Security
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-20(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-20(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-20(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-20(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PE-20(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PE-20(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PE-21: Environmental Control Training
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1114,14 +1095,14 @@ import "IA-2"
 # PL-2: System Security Plan
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PL-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PL-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PL-2(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PL-2(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PL-2(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# PL-2(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # PL-3: System Security Plan Update
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1148,11 +1129,11 @@ import "IA-2"
 # PS-3: Personnel Screening
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PS-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PS-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PS-2(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PS-2(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PS-4: Personnel Termination
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1163,17 +1144,17 @@ import "IA-2"
 # PS-6: Access Agreements
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PS-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PS-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PS-6(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PS-6(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PS-7: Third-Party Personnel Security
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# PS-7(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# PS-7(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # PS-8: Personnel Sanctions
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1197,20 +1178,20 @@ import "IA-2"
 # RA-5: Vulnerability Scanning
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# RA-5(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# RA-5(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# RA-5(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# RA-5(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# RA-5(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# RA-5(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# RA-5(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# RA-5(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# RA-5(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# RA-5(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 
 ###################################
@@ -1228,62 +1209,62 @@ import "IA-2"
 # SA-4: Acquisitions
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SA-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-4(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-4(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-4(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-4(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-4(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-4(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-4(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-4(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-4(6)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-4(6)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-4(7)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-4(7)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-4(8)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-4(8)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SA-5: Information System Documentation
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-5(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SA-5(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-5(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SA-5(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-5(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-5(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-5(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-5(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-5(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-5(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-5(6)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-5(6)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-5(7)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-5(7)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SA-6: Software Usage Restrictions
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SA-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-6(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-6(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SA-7: User Installed Software
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1294,44 +1275,44 @@ import "IA-2"
 # SA-9: External Information System Services
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-9(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SA-9(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SA-10: Developer Configuration Management
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-10(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SA-10(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SA-11: Developer Security Testing
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-11(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SA-11(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-11(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SA-11(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-11(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-11(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SA-12: Special Acquisitions - Supply Chain Risk and Defense in Breadth
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SA-11(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-11(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-11(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-11(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-11(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-11(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-11(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-11(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SA-11(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SA-11(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 
 ###################################
@@ -1340,8 +1321,8 @@ import "IA-2"
 # SC-1: System and Communications Protection Policy and Procedures
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-1(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-1(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SC-2: Application Partitioning
 # Chef Actions:
@@ -1349,38 +1330,36 @@ import "IA-2"
 # SC-3: Security Function Isolation
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-3(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-3(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SC-3(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-3(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SC-3(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-3(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SC-3(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-3(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SC-3(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-3(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SC-4: Information Remnance
 # Chef Actions: FIXME: Verify none required (Might require zero-filling memory pages before handing to user)
 
 # SC-5: Denial of Service Protection
 # Chef Actions: None - PROCEDURAL REQUIREMENT
-import "SC-5"
+include_recipe "SC-5"
 
-	# SC-5(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-5(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-5(2)
-	# Chef Actions:
+# SC-5(2)
+# Chef Actions:
 
-		include sc-5::p2
-
-	# SC-5(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-5(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SC-6: Resource Priority
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1388,63 +1367,63 @@ import "SC-5"
 # SC-7: Boundary Protection
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-7(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-7(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-7(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-7(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-7(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-7(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-7(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-7(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-7(5)
-	# Chef Actions:
+# SC-7(5)
+# Chef Actions:
 
-		# Implemented in AC-17(5)
+# Implemented in AC-17(5)
 
-	# SC-7(6)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-7(6)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-7(7)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-7(7)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-7(8)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-7(8)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-7(9)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-7(9)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SC-8: Transmission Integrity
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-8(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-8(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-8(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-8(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SC-9: Transmission Confidentiality
 # Chef Actions:
 
-	# Implemented in AC-17(2) / AC-17(5)
+# Implemented in AC-17(2) / AC-17(5)
 
-	# SC-9(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-9(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-9(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-9(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-9(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-9(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-9(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-9(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-9(5)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-9(5)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SC-10: Network Disconnect
 # Chef Actions: None Required
@@ -1455,17 +1434,17 @@ import "SC-5"
 # SC-12: Cryptographic Key Establishment and Management
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-12(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-12(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-12(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-12(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-12(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-12(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-12(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-12(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SC-13: Use of Cryptography
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1476,23 +1455,23 @@ import "SC-5"
 # SC-15: Collaborative Computing
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-15(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-15(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-15(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-15(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-15(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-15(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SC-16: Transmission of Security Parameters
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-16(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-16(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SC-16(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-16(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SC-17: Public Key Infrastructure Certificates
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1500,11 +1479,11 @@ import "SC-5"
 # SC-18: Mobile Code
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-18(1)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SC-18(1)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SC-18(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT 
+# SC-18(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SC-19: Voice Over Internet Protocol
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1512,14 +1491,14 @@ import "SC-5"
 # SC-20: Secure Name /Address Resolution Service (Authoritative Source)
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SC-20(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-20(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SC-21: Secure Name /Address Resolution Service (Recursive or Caching Resolver)
 # Chef Actions:
 
-	# SC-21(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SC-21(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SC-22: Architecture and Provisioning for Name/Address Resolution Service
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1537,116 +1516,116 @@ import "SC-5"
 # SI-2: Flaw Remediation
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-2(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-2(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-2(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-2(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-2(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-2(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SI-3: Malicious Code Protection
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-3(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-3(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-3(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-3(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-3(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-3(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-3(4)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-3(4)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SI-3(5)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-3(5)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SI-3(6)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-3(6)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SI-3(7)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-3(7)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SI-3(8)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-3(8)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SI-4: Information System Monitoring Tools and Techniques
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-4(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-4(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-4(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-4(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SI-4(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-4(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SI-4(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-4(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-4(5)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-4(5)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-4(6)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-4(6)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
-	# SI-4(7)
-	# Chef Actions: None - Depends on installed tools
+# SI-4(7)
+# Chef Actions: None - Depends on installed tools
 
-	# SI-4(8)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-4(8)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SI-5: Security Alerts and Advisories
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-5(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-5(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SI-6: Security Functionality Verification
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-6(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-6(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-6(2)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-6(2)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SI-7: Software and Information Integrity
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-7(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-7(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-7(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-7(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-7(3)
-	# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
+# SI-7(3)
+# Chef Actions: NOT REQUIRED BY NSS DOCUMENT
 
 # SI-8: Spam Protection
 # Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-8(1)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-8(1)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-8(2)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-8(2)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-8(3)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-8(3)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-8(4)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-8(4)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-8(5)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-8(5)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
-	# SI-8(6)
-	# Chef Actions: None - PROCEDURAL REQUIREMENT
+# SI-8(6)
+# Chef Actions: None - PROCEDURAL REQUIREMENT
 
 # SI-9: Information Input Restrictions
 # Chef Actions: None - PROCEDURAL REQUIREMENT
@@ -1667,52 +1646,44 @@ import "SC-5"
 ## (GEN000020: CAT II) (Previously - G001) The IAO and SA will ensure, if
 ## configurable, the UNIX host is configured to require a password for access
 ## to single-user and maintenance modes.
-import "GEN000020"
+include_recipe "GEN000020"
 include gen000020
 
 ## (GEN000440: CAT II) (Previously - G012) The SA will ensure all logon attempts (both
 ## successful and unsuccessful) are logged to a system log file.
-import "GEN000440"
-include gen000440
+include_recipe "GEN000440"
 
 ## (GEN000920: CAT II) The root root home directory will have permissions of 
 ## 700 or less permissive
 
-import "GEN000920"
-include gen000920
+include_recipe "GEN000920"
 
 ## (GEN000980: CAT II) (Previously - G026) The SA will ensure root can only log
 ## on as root from the system console, and then only when necessary to perform
 ## system maintenance.
-import "GEN000980"
-include gen000980
+include_recipe "GEN000980"
 
 ## (GEN001080: CAT III) (Previously - G229) The SA will ensure the root shell
 ## is not located in /usr if /usr is partitioned.
-import "GEN001080"
-include gen001080
+include_recipe "GEN001080"
 
 ## (GEN001280: CAT III) (Previously - G042) The SA will ensure all manual page
 ## files (i.e.,files in the man and cat directories) have permissions of 644,
 ## or more restrictive.
-import "GEN001280"
-include gen001280
+include_recipe "GEN001280"
 
 ## (GEN001460: CAT IV) (Previously - G052) The SA will ensure all home
 ## directories defined in the /etc/passwd file exist.
-import "GEN001460"
-include gen001460
+include_recipe "GEN001460"
 
 ## (GEN001560: CAT II) (Previously - G068) The user, application developers,
 ## and the SA will ensure user files and directories will have an initial
 ## permission no more permissive than 700, and never more permissive than 750.
-import "GEN001560"
-include gen001560
+include_recipe "GEN001560"
 
 ## (GEN001580: CAT II) (Previously - G058) The SA will ensure run control
 ## scripts have permissions of 755, or more restrictive.
-import "GEN001580"
-include gen001580
+include_recipe "GEN001580"
 
 ## (GEN001620: CAT II) (Previously - G061) The SA will ensure run control
 ## scripts files do not have the suid or sgid bit set.
@@ -1734,28 +1705,23 @@ include gen001580
 ## initialization files is root, sys, bin, other, or the system default.
 ## (GEN001780: CAT III) (Previously ??? G112) The SA will ensure global
 ## initialization files contain the command mesg ???n.
-import "GEN0017x0"
-include gen0017x0
+include_recipe "GEN0017x0"
 
 ## (GEN001800: CAT II) (Previously - G038) The SA will ensure all
 ## default/skeleton dot files have permissions of 644, or more restrictive.
-import "GEN001800"
-include gen001800
+include_recipe "GEN001800"
 
 ## (GEN001820: CAT II) The SA will ensure the owner of all default/skeleton
 ## dot files is root or bin.
-import "GEN001820"
-include gen001820
+include_recipe "GEN001820"
 
 ## (GEN002040: CAT I) The SA will ensure .rhosts, .shosts, hosts.equiv, nor
 ## shosts.equiv are used, unless justified and documented with the IAO.
-import "GEN002040"
-include gen002040
+include_recipe "GEN002040"
 
 ## (GEN002120: CAT II) (Previously ??? G069) The SA will ensure the /etc/shells
 ## (or equivalent) file exits.
-import "GEN002120"
-include gen002120
+include_recipe "GEN002120"
 
 ## (GEN002160: CAT I) (Previously ??? G072) The SA will ensure no shell has the
 ## suid bit set.
@@ -1776,8 +1742,7 @@ include gen002120
 
 ## (GEN002320: CAT II) (Previously - G501) The SA will ensure the audio devices
 ## have permissions of 644, or more restrictive.
-import "GEN002320"
-include gen002320
+include_recipe "GEN002320"
 
 ## (GEN002340: CAT II) (Previously - G502) The SA will ensure the owner of
 ## audio devices is root.
@@ -1789,26 +1754,22 @@ include gen002320
 
 ## (GEN002560: CAT II) (Previously - G089) The SA will ensure the system and
 ## user umask is 077.
-import "GEN002560"
-include gen002560
+include_recipe "GEN002560"
 
 ## (GEN002640: CAT II) (Previously - G092) The SA will ensure logon capability
 ## to default system accounts (e.g., bin, lib, uucp, news, sys, guest, daemon,
 ## and any default account not normally logged onto) will be disabled by
 ## making the default shell /bin/false, /usr/bin/false, /sbin/false,
 ## /sbin/nologin, or /dev/null, and by locking the password.
-import "GEN002640"
-include gen002640
+include_recipe "GEN002640"
 
 ## (GEN002860: CAT II) (Previously - G674) The SA and/or IAO will ensure old
 ## audit logs are closed and new audit logs are started daily.
-import "GEN002860"
-include gen002860
+include_recipe "GEN002860"
 
 ## (GEN003040: CAT II) The SA will ensure the owner of crontabs is root or the
 ## crontab creator.
-import "GEN003040"
-include gen003040
+include_recipe "GEN003040"
 
 ## (GEN003060: CAT II) The SA will ensure default system accounts (with the
 ## possible exception of root) will not be listed in the cron.allow file. If
@@ -1835,8 +1796,7 @@ include gen003040
 
 ## (GEN003180: CAT II) (Previously - G210) The SA will ensure cron logs have
 ## permissions of 600, or more restrictive.
-import "GEN003180"
-include gen003180
+include_recipe "GEN003180"
 
 ## (GEN003300: CAT II) (Previously - G212) The SA will ensure the at.deny file
 ## is not empty.
@@ -1850,13 +1810,11 @@ include gen003180
 
 ## (GEN003340: CAT II) (Previously - G214) The SA will ensure the at.allow and
 ## at.deny files have permissions of 600, or more restrictive.
-import "GEN003340"
-include gen003340
+include_recipe "GEN003340"
 
 ## (GEN003400: CAT II) (Previously - G625) The SA will ensure the at (or
 ## equivalent) directory has permissions of 755, or more restrictive.
-import "GEN003400"
-include gen003400
+include_recipe "GEN003400"
 
 ## (GEN003420: CAT II) (Previously - G626) The SA will ensure the owner and
 ## group owner of the at (or equivalent) directory is root, sys, bin, or daemon.
@@ -1872,32 +1830,27 @@ include gen003400
 
 ## (GEN003500: CAT III) The SA will ensure core dumps are disabled or
 ## restricted.
-import "GEN003500"
-include gen003500
+include_recipe "GEN003500"
 
 ## (GEN003520: CAT III) The SA will ensure the owner and group owner of the
 ## core dump  data directory is root with permissions of 700, or more
 ## restrictive.
-import "GEN003520"
-include gen003520
+include_recipe "GEN003520"
 
 ## (GEN003700: CAT II) The SA will ensure inetd (xinetd for Linux) is disabled
 ## if all inetd/xinetd based services are disabled.
-import "GEN003700"
-include gen003700
+include_recipe "GEN003700"
 
 ## (GEN003740: CAT II) (Previously - G108) The SA will ensure the inetd.conf
 ## (xinetd.conf for Linux) file has permissions of 440, or more restrictive.
 ## The Linux xinetd.d directory will have permissions of 755, or more
 ## restrictive. This is to include any directories defined in the includedir
 ## parameter.
-import "GEN003740"
-include gen003740
+include_recipe "GEN003740"
 
 ## (GEN003760: CAT II) (Previously - G109) The SA will ensure the owner of the
 ## services file is root or bin.
-import "GEN003760"
-include gen003760
+include_recipe "GEN003760"
 
 ## (GEN003780: CAT II) (Previously - G110) The SA will ensure the services
 ## file has permissions of 644, or more restrictive.
@@ -1905,13 +1858,11 @@ include gen003760
 
 ## (GEN003860: CAT III) (Previously - V046) The SA will ensure finger is not
 ## enabled.
-import "GEN003860"
-include gen003860
+include_recipe "GEN003860"
 
 ## (GEN004360: CAT II) (Previously - G127) The SA will ensure the aliases file
 ## is owned by root.
-import "GEN004360"
-include gen004360
+include_recipe "GEN004360"
 
 ## (GEN004380: CAT II) (Previously - G128) The SA will ensure the aliases file
 ## has permissions of 644, or more restrictive.
@@ -1921,13 +1872,11 @@ include gen004360
 ## logging level (the detail level of e-mail tracing and debugging
 ## information) in the sendmail.cf file is set to a value no lower than
 ## nine (9).
-import "GEN004440"
-include gen004440
+include_recipe "GEN004440"
 
 ## (GEN004480: CAT II) (Previously - G135) The SA will ensure the owner of the
 ## critical sendmail log file is root.
-import "GEN004480"
-include gen004480
+include_recipe "GEN004480"
 
 ## (GEN004500: CAT II) (Previously - G136) The SA will ensure the critical
 ## sendmail log file has permissions of 644, or more restrictive.
@@ -1935,30 +1884,25 @@ include gen004480
 
 ## (GEN004540: CAT II) The SA will ensure the help sendmail command is
 ## disabled.
-import "GEN004540"
-include gen004540
+include_recipe "GEN004540"
 
 ## (GEN004560: CAT II) (Previously - G646) To help mask the e-mail version,
 ## the SA will use the following in place of the original sendmail greeting
 ## message:
 ##   O SmtpGreetingMessage= Mail Server Ready ; $b
-import "GEN004560"
-include gen004560
+include_recipe "GEN004560"
 
 ## (GEN004580: CAT I) (Previously - G647) The SA will ensure .forward files
 ## are not used.
-import "GEN004580"
-include gen004580
+include_recipe "GEN004580"
 
 ## (GEN004640: CAT I) (Previously - V126) The SA will ensure the decode entry
 ## is disabled (deleted or commented out) from the alias file.
-import "GEN004640"
-include gen004640
+include_recipe "GEN004640"
 
 ## (GEN004880: CAT II) (Previously - G140) The SA will ensure the ftpusers
 ## file exists.
-import "GEN004880"
-include gen004880
+include_recipe "GEN004880"
 
 ## (GEN004900: CAT II) (Previously - G141) The SA will ensure the ftpusers
 ## file contains the usernames of users not allowed to use FTP, and contains,
@@ -1975,7 +1919,7 @@ include gen004880
 
 ## (GEN005000: CAT I) (Previously - G649) The SA will implement the anonymous
 ## FTP account with a non-functional shell such as /bin/false.
-# import "GEN005000"
+# include_recipe "GEN005000"
 # include gen005000
 # superseded by LNX00320
 
@@ -1983,20 +1927,17 @@ include gen004880
 ## /etc/syslog.conf file is root with permissions of 640, or more restrictive.
 ## (GEN005420: CAT II) (Previously - G657) The SA will ensure the group owner
 ## of the /etc/syslog.conf file is root, sys, or bin.
-import "GEN0054x0"
-include gen0054x0
+include_recipe "GEN0054x0"
 
 ## (GEN005740: CAT II) (Previously - G178) The SA will ensure the owner of the
 ## export configuration file is root.
 ## (GEN005760: CAT III) (Previously - G179) The SA will ensure the export
 ## configuration file has permissions of 644, or more restrictive.
-import "GEN0057x0"
-include gen0057x0
+include_recipe "GEN0057x0"
 
 ## (GEN006100: CAT II) (Previously - L050) The SA will ensure the owner of
 ## the/etc/samba/smb.conf file is root.
-import "GEN006100"
-include gen006100
+include_recipe "GEN006100"
 
 ## (GEN006120: CAT II) (Previously - L051) The SA will ensure the group owner
 ## of the /etc/samba/smb.conf file is root.
@@ -2008,8 +1949,7 @@ include gen006100
 
 ## (GEN006160: CAT II) (Previously - L054) The SA will ensure the owner of
 ## smbpasswd is root.
-import "GEN006160"
-include gen006160
+include_recipe "GEN006160"
 
 ## (GEN006180: CAT II) (Previously - L055) The SA will ensure group owner of
 ## smbpasswd is root.
@@ -2021,66 +1961,54 @@ include gen006160
 
 ## (GEN006260: CAT II) (Previously - L154) The SA will ensure the
 ## /etc/news/hosts.nntp file has permissions of 600, or more restrictive.
-import "GEN006260"
-include gen006260
+include_recipe "GEN006260"
 
 ## (GEN006280: CAT II) (Previously - L156) The SA will ensure the
 ## /etc/news/hosts.nntp.nolimit file has permissions of 600, or more
 ## restrictive.
-import "GEN006280"
-include gen006280
+include_recipe "GEN006280"
 
 ## (GEN006300: CAT II) (Previously - L158) The SA will ensure the
 ## /etc/news/nnrp.access file has permissions of 600, or more restrictive.
-import "GEN006300"
-include gen006300
+include_recipe "GEN006300"
 
 ## (GEN006320: CAT II) (Previously - L160) The SA will ensure the
 ## /etc/news/passwd.nntp file has permissions of 600, or more restrictive.
-import "GEN006320"
-include gen006320
+include_recipe "GEN006320"
 
 ## (GEN006340: CAT II) (Previously - L162) The SA will ensure the owner of all
 ## files under the /etc/news subdirectory is root or news.
-import "GEN006340"
-include gen006340
+include_recipe "GEN006340"
 
 ## (GEN006360: CAT II) (Previously - L164) The SA will ensure the group owner
 ## of all files in /etc/news is root or news.
 # implemented in GEN006340
-include gen006340
 
 ## (LNX00160: CAT II) (Previously - L074) The SA will ensure the grub.conf
 ## file has permissions of 600, or more restrictive.
-import "LNX00160"
-include lnx00160
+include_recipe "LNX00160"
 
 ## (LNX00220: CAT II) (Previously - L080) The SA will ensure the lilo.conf
 ## file has permissions of 600 or more restrictive.
-import "LNX00220"
-include lnx00220
+include_recipe "LNX00220"
 
 ## (LNX00320: CAT I) (Previously - L140) The SA will delete accounts that
 ## provide a special privilege such as shutdown and halt.
-import "LNX00320"
-include lnx00320
+include_recipe "LNX00320"
 
 ## (LNX00340: CAT II) (Previously - L142) The SA will delete accounts that
 ## provide no operational purpose, such as games or operator, and will delete
 ## the associated software.
-import "LNX00340"
-include lnx00340
+include_recipe "LNX00340"
 
 ## (LNX00360: CAT II) (Previously - L032) The SA will enable the X server
 ## –audit (at level 4) and –s option (with 15 minutes as the timeout time)
 ## options.
-import "LNX00360"
-include lnx00360
+include_recipe "LNX00360"
 
 ## (LNX00400: CAT II) (Previously - L044) The SA will ensure the owner of the
 ## /etc/login.access or /etc/security/access.conf file is root.
-import "LNX00400"
-include lnx00400
+include_recipe "LNX00400"
 
 ## (LNX00420: CAT II) (Previously - L045) The SA will ensure the group owner
 ## of the /etc/login.access or /etc/security/access.conf file is root.
@@ -2092,8 +2020,7 @@ include lnx00400
 
 ## (LNX00480: CAT II) (Previously - L204) The SA will ensure the owner of the
 ## /etc/sysctl.conf file is root.
-import "LNX00480"
-include lnx00480
+include_recipe "LNX00480"
 
 ## (LNX00500: CAT II) (Previously - L206) The SA will ensure the group owner
 ## of the /etc/sysctl.conf file is root.
@@ -2106,8 +2033,7 @@ include lnx00480
 ## (LNX00580: CAT I) (Previously - L222) The SA will disable the
 ## Ctrl-Alt-Delete sequence unless the system is located in a controlled
 ## access area accessible only by SAs.
-import "LNX00580"
-include lnx00580
+include_recipe "LNX00580"
 
 ## (LNX00620: CAT II) The SA will ensure the group owner of the /etc/securetty
 ## file is root, sys, or bin.
@@ -2130,11 +2056,11 @@ include lnx00580
 # 4.B.4.a(1) 
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(1)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(1)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(1)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(1)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 
 # 4.B.4.a(2) 
@@ -2144,7 +2070,7 @@ include lnx00580
 #                    Create ACL and other security features during
 #                    the mounting of each file system (/etc/fstab).
 
-	# Implemented in GEN002420
+# Implemented in GEN002420
 
 
 # 4.B.4.a(3)  
@@ -2154,106 +2080,105 @@ include lnx00580
 # 4.B.4.a(4)  
 # KickStart Actions: 
 
-	# 4.B.4.a(4)(a) 
-	# KickStart Actions: 
-	
-	# 4.B.4.a(4)(b) 
-	# KickStart Actions: 
-	
-	# 4.B.4.a(4)(c) 
-	# KickStart Actions: 
-	
-	# 4.B.4.a(4)(d) 
-	# KickStart Actions: 
-	
-	# 4.B.4.a(4)(e) 
-	# KickStart Actions: 
-	
-		# 4.B.4.a(4)(e)1. 
-		# KickStart Actions: 
-		
-		# 4.B.4.a(4)(e)2. 
-		# KickStart Actions: 
-	
-		
+# 4.B.4.a(4)(a)
+# KickStart Actions:
+
+# 4.B.4.a(4)(b)
+# KickStart Actions:
+
+# 4.B.4.a(4)(c)
+# KickStart Actions:
+
+# 4.B.4.a(4)(d)
+# KickStart Actions:
+
+# 4.B.4.a(4)(e)
+# KickStart Actions:
+
+# 4.B.4.a(4)(e)1.
+# KickStart Actions:
+
+# 4.B.4.a(4)(e)2.
+# KickStart Actions:
+
+
 # 4.B.4.a(5) 
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(5)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(5)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(5)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(5)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(5)(c)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(5)(c)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(5)(d)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(5)(d)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	#(FOUO)
-	#4.B.4.a(5)(e)
-	#KickStart Actions: None - PROCEDURAL REQUIREMENT
+#(FOUO)
+#4.B.4.a(5)(e)
+#KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 
-
-# 4.B.4.a(6) 
+# 4.B.4.a(6)
 # KickStart Actions: None
 
-	# 4.B.4.a(6)(a)
-	# KickStart Actions: None
+# 4.B.4.a(6)(a)
+# KickStart Actions: None
 
-	# 4.B.4.a(6)(b)
-	# KickStart Actions: Reset the permissions of /etc/syslog.conf to 640 and set
-	#                   /var/{run,log}/{wtmp,utmp} files to 664.
+# 4.B.4.a(6)(b)
+# KickStart Actions: Reset the permissions of /etc/syslog.conf to 640 and set
+#                   /var/{run,log}/{wtmp,utmp} files to 664.
 
-		# Implemented in GEN001260
-		# Implemented in GEN005400
-		# Implemented in GEN005420
-		# Implemented in GEN004500
-		# Implemented in GEN004480
-		# Implemented in GEN003180
+# Implemented in GEN001260
+# Implemented in GEN005400
+# Implemented in GEN005420
+# Implemented in GEN004500
+# Implemented in GEN004480
+# Implemented in GEN003180
 
 
-	# 4.B.4.a(6)(c)
-	# KickStart Actions: Log rotation to 90 days (12 weeks) and turn compression on.
-	#                    This will have to up'd if system does not retain backups
-	#                    for 5 years  (e.g., tape backup).
+# 4.B.4.a(6)(c)
+# KickStart Actions: Log rotation to 90 days (12 weeks) and turn compression on.
+#                    This will have to up'd if system does not retain backups
+#                    for 5 years  (e.g., tape backup).
 
-		# Implemented in GEN002860
+# Implemented in GEN002860
 
-	# 4.B.4.a(6)(d)
-	# KickStart Actions: Turn on the Audit Daemon and set permissions
+# 4.B.4.a(6)(d)
+# KickStart Actions: Turn on the Audit Daemon and set permissions
 
-		# Implemented in GEN002660
-		# Implemented in GEN002680
-		# Implemented in GEN002700
+# Implemented in GEN002660
+# Implemented in GEN002680
+# Implemented in GEN002700
 
-		# 4.B.4.a(6)(d)(1)
-		# KickStart Actions: None, This is met with the /var/log/wtmp and 
-		#                    /var/log/utmp files. Permissions have been set 
-		#                    correctly above.
-		#                    See Section 4.B.4.a(6)(d)(2)
+# 4.B.4.a(6)(d)(1)
+# KickStart Actions: None, This is met with the /var/log/wtmp and
+#                    /var/log/utmp files. Permissions have been set
+#                    correctly above.
+#                    See Section 4.B.4.a(6)(d)(2)
 
-		# 4.B.4.a(6)(d)(2)
-		# KickStart Actions: This will require refinement.  
-		#                    Commented rules do not insert w/o an error.
+# 4.B.4.a(6)(d)(2)
+# KickStart Actions: This will require refinement.
+#                    Commented rules do not insert w/o an error.
 
-			# Implemented in GEN002720
-			# Implemented in GEN002740
-			# Implemented in GEN002760
-			# Implemented in GEN002780
-			# Implemented in GEN002800
-			# Implemented in GEN002820
-			# Implemented in GEN002840
+# Implemented in GEN002720
+# Implemented in GEN002740
+# Implemented in GEN002760
+# Implemented in GEN002780
+# Implemented in GEN002800
+# Implemented in GEN002820
+# Implemented in GEN002840
 
-		# 4.B.4.a(6)(d)(3)
-		# KickStart Actions: All authentication attemps will be monitored
-		#                    in /var/log/messages.
+# 4.B.4.a(6)(d)(3)
+# KickStart Actions: All authentication attemps will be monitored
+#                    in /var/log/messages.
 
-			# Implemented in GEN003660
-			# Implemented in GEN000440
-			# Implemented in GEN004440
+# Implemented in GEN003660
+# Implemented in GEN000440
+# Implemented in GEN004440
 
 # 4.B.4.a(7) 
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
@@ -2261,80 +2186,80 @@ include lnx00580
 # 4.B.4.a(8) 
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(8)(a)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(8)(a)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(8)(b) 
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(8)(b)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
 # 4.B.4.a(9) 
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(9)(a) 
-	# KickStart Actions:  
+# 4.B.4.a(9)(a)
+# KickStart Actions:
 
-	# 4.B.4.a(9)(b)
-	# KickStart Actions:  POLICY
+# 4.B.4.a(9)(b)
+# KickStart Actions:  POLICY
 
-	# 4.B.4.a(9)(c) 
-	# KickStart Actions:  
+# 4.B.4.a(9)(c)
+# KickStart Actions:
 
-	# 4.B.4.a(9)(d) 
-	# KickStart Actions:  
+# 4.B.4.a(9)(d)
+# KickStart Actions:
 
 # 4.B.4.a(10)  
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(10)(a) 
-	# KickStart Actions:  
+# 4.B.4.a(10)(a)
+# KickStart Actions:
 
-	# 4.B.4.a(10)(b) 
-	# KickStart Actions:  
+# 4.B.4.a(10)(b)
+# KickStart Actions:
 
 # 4.B.4.a(11) 
 # KickStart Actions:  None
 
-	# 4.B.4.a(11)(a)
-	# KickStart Actions:  None
+# 4.B.4.a(11)(a)
+# KickStart Actions:  None
 
-	# 4.B.4.a(11)(b)
-	# KickStart Actions:  None
+# 4.B.4.a(11)(b)
+# KickStart Actions:  None
 
-	# 4.B.4.a(11)(c)
-	# KickStart Actions: The following item have been set to meet this policy. 
-	# Note:
-	# Investigating using PAM for preventing 10 recent passwords- doesn't appear
-	# to be easily done using pam_passwdqc
+# 4.B.4.a(11)(c)
+# KickStart Actions: The following item have been set to meet this policy.
+# Note:
+# Investigating using PAM for preventing 10 recent passwords- doesn't appear
+# to be easily done using pam_passwdqc
 
-		# Implemented in GEN000580
-		# Implemented in GEN000600
+# Implemented in GEN000580
+# Implemented in GEN000600
 
-	# 4.B.4.a(11)(d)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(11)(d)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(11)(e)
-	# KickStart Actions: Change the password expiration time from undefined to 60 days.
-	#                    Users cannot change passwords more than once a day.
+# 4.B.4.a(11)(e)
+# KickStart Actions: Change the password expiration time from undefined to 60 days.
+#                    Users cannot change passwords more than once a day.
 
-		# Implemented in GEN000700
-		# Implemented in GEN000540
+# Implemented in GEN000700
+# Implemented in GEN000540
 
-	# 4.B.4.a(11)(f)
-	# KickStart Actions: opasswd file creation in /etc/security/opasswd 
-	#                    for non-replication. 
+# 4.B.4.a(11)(f)
+# KickStart Actions: opasswd file creation in /etc/security/opasswd
+#                    for non-replication.
 
-		# Implemented in GEN000800
+# Implemented in GEN000800
 
-	# 4.B.4.a(11)(g)
-	# KickStart Actions: Additional I&A Security. 
-	#                    Protection of authenticators to perserve confidentiality and 
-	#                    integrity.  Red Hat encrypts authenticators using the MD5
-	#                    Message Digest.
+# 4.B.4.a(11)(g)
+# KickStart Actions: Additional I&A Security.
+#                    Protection of authenticators to perserve confidentiality and
+#                    integrity.  Red Hat encrypts authenticators using the MD5
+#                    Message Digest.
 
-		# Implemented in GEN001380
-		# Implemented in GEN001400
-		# Implemented in GEN001420
-		# Implemented in GEN000560
+# Implemented in GEN001380
+# Implemented in GEN001400
+# Implemented in GEN001420
+# Implemented in GEN000560
 
 # 4.B.4.a(12) 
 # KickStart Actions:  See 4.B.4.a(9)(c); specifically passwdqc
@@ -2345,36 +2270,36 @@ include lnx00580
 #                    the /etc/ssh/ssh_config file to use stronger encryption.
 #                    AES with 256-bit key Cycpher Block Chaining  
 
-	# Implemented in GEN005500
+# Implemented in GEN005500
 
 
 # 4.B.4.a(14) 
 # KickStart Actions: None
 
-	# 4.B.4.a(14)(a) 
-	# KickStart Actions:  
+# 4.B.4.a(14)(a)
+# KickStart Actions:
 
-	# 4.B.4.a(14)(b) 
-	# KickStart Actions:  
+# 4.B.4.a(14)(b)
+# KickStart Actions:
 
 
 # 4.B.4.a(15) 
 # KickStart Actions:  
 
-	# 4.B.4.a(15)(a) 
-	# KickStart Actions:  
+# 4.B.4.a(15)(a)
+# KickStart Actions:
 
-	# 4.B.4.a(15)(b) 
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 4.B.4.a(15)(b)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.a(15)(c) 
-	# KickStart Actions:  
+# 4.B.4.a(15)(c)
+# KickStart Actions:
 
-	# 4.B.4.a(15)(d)  
-	# KickStart Actions:  
+# 4.B.4.a(15)(d)
+# KickStart Actions:
 
-	# 4.B.4.a(15)(e) 
-	# KickStart Actions:  
+# 4.B.4.a(15)(e)
+# KickStart Actions:
 
 
 # 4.B.4.a(16)  
@@ -2384,7 +2309,7 @@ include lnx00580
 # 4.B.4.a(17) 
 # KickStart Actions: Restrict Root Logins and Least Privilege Enhancements.
 
-	# Implemented in GEN000020
+# Implemented in GEN000020
 
 
 # 4.B.4.a(18) 
@@ -2402,19 +2327,19 @@ include lnx00580
 # 4.B.4.a(21) 
 # KickStart Actions: None
 
-	# 4.B.4.a(21)(a)
-	# KickStart Actions: Interactive Shell setting here.
-	# Gnome screen-saver line command tool -->  needs to be tested.
-	# gconftool-2 --direct \
-	#   --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
-	#   --type int \
-	#   --set /apps/gnome-screensaver/idle_delay 15
+# 4.B.4.a(21)(a)
+# KickStart Actions: Interactive Shell setting here.
+# Gnome screen-saver line command tool -->  needs to be tested.
+# gconftool-2 --direct \
+#   --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+#   --type int \
+#   --set /apps/gnome-screensaver/idle_delay 15
 
-	# 4.B.4.a(21)(b)
-	# KickStart Actions: None
+# 4.B.4.a(21)(b)
+# KickStart Actions: None
 
-	# 4.B.4.a(21)(c)
-	# KickStart Actions: None
+# 4.B.4.a(21)(c)
+# KickStart Actions: None
 
 
 # 4.B.4.a(22) 
@@ -2424,78 +2349,76 @@ include lnx00580
 # 4.B.4.a(23) 
 # KickStart Actions: None
 
-	# 4.B.4.a(23)(a)
-	# KickStart Actions: See Section 4.B.4.a(23)(b)
+# 4.B.4.a(23)(a)
+# KickStart Actions: See Section 4.B.4.a(23)(b)
 
-	# 4.B.4.a(23)(b)
-	# KickStart Actions: Banner Settings
+# 4.B.4.a(23)(b)
+# KickStart Actions: Banner Settings
 
-		# Implemented in GEN000400
+# Implemented in GEN000400
 
 # 4.B.4.a(24) 
 # KickStart Actions: None
 
-	# 4.B.4.a(24)(a)
-	# KickStart Actions: None
+# 4.B.4.a(24)(a)
+# KickStart Actions: None
 
-	# 4.B.4.a(24)(b)
-	# KickStart Actions: Set an inactive shell timeout - likely going away in March STIG
+# 4.B.4.a(24)(b)
+# KickStart Actions: Set an inactive shell timeout - likely going away in March STIG
 
-		# Implemented in GEN000500
+# Implemented in GEN000500
 
-	# 4.B.4.a(24)(c)
-	# KickStart Actions: None
+# 4.B.4.a(24)(c)
+# KickStart Actions: None
 
-		# Implemented in GEN000460
-		# Implemented in GEN000480
+# Implemented in GEN000460
+# Implemented in GEN000480
 
-	# 4.B.4.a(24)(d)
-	# KickStart Actions: None
+# 4.B.4.a(24)(d)
+# KickStart Actions: None
 
 # 4.B.4.a(25) 
 # KickStart Actions: None
-	 
-	# 4.B.4.a(25)(a)
-	# KickStart Actions: None
 
-	# 4.B.4.a(25)(b)
-	# KickStart Actions: None
+# 4.B.4.a(25)(a)
+# KickStart Actions: None
 
-	# 4.B.4.a(25)(c)
-	# KickStart Actions: None
+# 4.B.4.a(25)(b)
+# KickStart Actions: None
 
-	# 4.B.4.a(25)(d)
-	# KickStart Actions: None - Will need to down load an encryption package like "secret agent"
+# 4.B.4.a(25)(c)
+# KickStart Actions: None
+
+# 4.B.4.a(25)(d)
+# KickStart Actions: None - Will need to down load an encryption package like "secret agent"
 
 
 # 4.B.4.a(26) 
 # KickStart Actions: None
 
-	# 4.B.4.a(26)(a)
-	# KickStart Actions: None
-	 
-		# 4.B.4.a(26)(a)(1)
-		# KickStart Actions: None
+# 4.B.4.a(26)(a)
+# KickStart Actions: None
 
-		# 4.B.4.a(26)(a)(2)
-		# KickStart Actions: None
+# 4.B.4.a(26)(a)(1)
+# KickStart Actions: None
 
-		# 4.B.4.a(26)(a)(3)
-		# KickStart Actions:
-	
-			# Implemented in GEN005500
+# 4.B.4.a(26)(a)(2)
+# KickStart Actions: None
 
-		# 4.B.4.a(26)(a)(4)
-		# KickStart Actions: None
+# 4.B.4.a(26)(a)(3)
+# KickStart Actions:
 
-	# 4.B.4.a(26)(b)
-	# KickStart Actions: None
+# Implemented in GEN005500
+
+# 4.B.4.a(26)(a)(4)
+# KickStart Actions: None
+
+# 4.B.4.a(26)(b)
+# KickStart Actions: None
 
 
 # 4.B.4.a(27)  
 # KickStart Actions: 
-
-
 
 
 ### DCID 6/3 PL4
@@ -2510,11 +2433,11 @@ include lnx00580
 # 4.B.4.b(2) 
 # KickStart Actions: None
 
-	# 4.B.4.b(2)(a)
-	# KickStart Actions: None
+# 4.B.4.b(2)(a)
+# KickStart Actions: None
 
-	# 4.B.4.b(2)(b)
-	# KickStart Actions: None
+# 4.B.4.b(2)(b)
+# KickStart Actions: None
 
 # 4.B.4.b(3) 
 # KickStart Actions: None
@@ -2522,151 +2445,151 @@ include lnx00580
 # 4.B.4.b(4) 
 # KickStart Actions: None
 
-	# 4.B.4.b(4)(a)
-	# KickStart Actions: None
+# 4.B.4.b(4)(a)
+# KickStart Actions: None
 
-	# 4.B.4.b(4)(b)
-	# KickStart Actions: None
+# 4.B.4.b(4)(b)
+# KickStart Actions: None
 
-	# 4.B.4.b(4)(c)
-	# KickStart Actions: None
+# 4.B.4.b(4)(c)
+# KickStart Actions: None
 
-	# 4.B.4.b(4)(d)
-	# KickStart Actions: None
+# 4.B.4.b(4)(d)
+# KickStart Actions: None
 
 # 4.B.4.b(5) 
 # KickStart Actions: None
 
-	# 4.B.4.b(5)(a)
-	# KickStart Actions: Expected Operations
+# 4.B.4.b(5)(a)
+# KickStart Actions: Expected Operations
 
-		# Implemented in GEN003600
-		# Implemented in GEN003700
-		# Implemented in GEN003740
-		# Implemented in GEN003860
-		# Implemented in GEN003960
-		# Implemented in GEN003980
-		# Implemented in GEN004000
-		# Implemented in GEN005600
+# Implemented in GEN003600
+# Implemented in GEN003700
+# Implemented in GEN003740
+# Implemented in GEN003860
+# Implemented in GEN003960
+# Implemented in GEN003980
+# Implemented in GEN004000
+# Implemented in GEN005600
 
-	# 4.B.4.b(5)(b)
-	# KickStart Actions: Actions Listed Below
+# 4.B.4.b(5)(b)
+# KickStart Actions: Actions Listed Below
 
-		# Implemented in GEN000920
-		# Implemented in GEN000980
-		# Implemented in GEN001020
-		# Implemented in GEN001080
-		# Implemented in GEN001120
-		# Implemented in GEN001280
-		# Implemented in GEN001460
-		# Implemented in GEN001560
-		# Implemented in GEN001580
-		# Implemented in GEN001620
-		# Implemented in GEN001660
-		# Implemented in GEN001680
-		# Implemented in GEN001720
-		# Implemented in GEN001740
-		# Implemented in GEN001760
-		# Implemented in GEN001780
-		# Implemented in GEN001800
-		# Implemented in GEN001820
-		# Implemented in GEN002040
-		# Implemented in GEN002120
-		# Implemented in GEN002160
-		# Implemented in GEN002180
-		# Implemented in GEN002200
-		# Implemented in GEN002220
-		# Implemented in GEN002320
-		# Implemented in GEN002340
-		# Implemented in GEN002360
-		# Implemented in GEN002560
-		# Implemented in GEN002640
-		# Implemented in GEN002980
-		# Implemented in GEN003040
-		# Implemented in GEN003060
-		# Implemented in GEN003080
-		# Implemented in GEN003100
-		# Implemented in GEN003120
-		# Implemented in GEN003140
-		# Implemented in GEN003200
-		# Implemented in GEN003240
-		# Implemented in GEN003260
-		# Implemented in GEN003300
-		# Implemented in GEN003320
-		# Implemented in GEN003340
-		# Implemented in GEN003400
-		# Implemented in GEN003420
-		# Implemented in GEN003460
-		# Implemented in GEN003480
-		# Implemented in GEN003500
-		# Implemented in GEN003520
-		# Implemented in GEN003760
-		# Implemented in GEN003780
-		# Implemented in GEN004360
-		# Implemented in GEN004380
-		# Implemented in GEN004540
-		# Implemented in GEN004560
-		# Implemented in GEN004580
-		# Implemented in GEN004640
-		# Implemented in GEN004880
-		# Implemented in GEN004900
-		# Implemented in GEN004920
-		# Implemented in GEN004940
-		# Implemented in GEN005000
-		# Implemented in GEN005360
-		# Implemented in GEN005740
-		# Implemented in GEN005760
-		# Implemented in GEN006100
-		# Implemented in GEN006120
-		# Implemented in GEN006140
-		# Implemented in GEN006160
-		# Implemented in GEN006180
-		# Implemented in GEN006200
-		# Implemented in GEN006260
-		# Implemented in GEN006280
-		# Implemented in GEN006300
-		# Implemented in GEN006320
-		# Implemented in GEN006340
-		# Implemented in GEN006360
-		# Implemented in GEN006520
-		# Implemented in GEN006620
-		# Implemented in LNX00160
-		# Implemented in LNX00220
-		# Implemented in LNX00320
-		# Implemented in LNX00340
-		# Implemented in LNX00360
-		# Implemented in LNX00400
-		# Implemented in LNX00420
-		# Implemented in LNX00440
-		# Implemented in LNX00480
-		# Implemented in LNX00500
-		# Implemented in LNX00520
-		# Implemented in LNX00580
-		# Implemented in LNX00620
-		# Implemented in LNX00640
-		# Implemented in LNX00660
+# Implemented in GEN000920
+# Implemented in GEN000980
+# Implemented in GEN001020
+# Implemented in GEN001080
+# Implemented in GEN001120
+# Implemented in GEN001280
+# Implemented in GEN001460
+# Implemented in GEN001560
+# Implemented in GEN001580
+# Implemented in GEN001620
+# Implemented in GEN001660
+# Implemented in GEN001680
+# Implemented in GEN001720
+# Implemented in GEN001740
+# Implemented in GEN001760
+# Implemented in GEN001780
+# Implemented in GEN001800
+# Implemented in GEN001820
+# Implemented in GEN002040
+# Implemented in GEN002120
+# Implemented in GEN002160
+# Implemented in GEN002180
+# Implemented in GEN002200
+# Implemented in GEN002220
+# Implemented in GEN002320
+# Implemented in GEN002340
+# Implemented in GEN002360
+# Implemented in GEN002560
+# Implemented in GEN002640
+# Implemented in GEN002980
+# Implemented in GEN003040
+# Implemented in GEN003060
+# Implemented in GEN003080
+# Implemented in GEN003100
+# Implemented in GEN003120
+# Implemented in GEN003140
+# Implemented in GEN003200
+# Implemented in GEN003240
+# Implemented in GEN003260
+# Implemented in GEN003300
+# Implemented in GEN003320
+# Implemented in GEN003340
+# Implemented in GEN003400
+# Implemented in GEN003420
+# Implemented in GEN003460
+# Implemented in GEN003480
+# Implemented in GEN003500
+# Implemented in GEN003520
+# Implemented in GEN003760
+# Implemented in GEN003780
+# Implemented in GEN004360
+# Implemented in GEN004380
+# Implemented in GEN004540
+# Implemented in GEN004560
+# Implemented in GEN004580
+# Implemented in GEN004640
+# Implemented in GEN004880
+# Implemented in GEN004900
+# Implemented in GEN004920
+# Implemented in GEN004940
+# Implemented in GEN005000
+# Implemented in GEN005360
+# Implemented in GEN005740
+# Implemented in GEN005760
+# Implemented in GEN006100
+# Implemented in GEN006120
+# Implemented in GEN006140
+# Implemented in GEN006160
+# Implemented in GEN006180
+# Implemented in GEN006200
+# Implemented in GEN006260
+# Implemented in GEN006280
+# Implemented in GEN006300
+# Implemented in GEN006320
+# Implemented in GEN006340
+# Implemented in GEN006360
+# Implemented in GEN006520
+# Implemented in GEN006620
+# Implemented in LNX00160
+# Implemented in LNX00220
+# Implemented in LNX00320
+# Implemented in LNX00340
+# Implemented in LNX00360
+# Implemented in LNX00400
+# Implemented in LNX00420
+# Implemented in LNX00440
+# Implemented in LNX00480
+# Implemented in LNX00500
+# Implemented in LNX00520
+# Implemented in LNX00580
+# Implemented in LNX00620
+# Implemented in LNX00640
+# Implemented in LNX00660
 
 # 4.B.4.b(6)
 # KickStart Actions: None
 
-	# 4.B.4.b(6)(a)
-	# KickStart Actions: None
+# 4.B.4.b(6)(a)
+# KickStart Actions: None
 
-	# 4.B.4.b(6)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(6)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 
 # 4.B.4.b(7) 
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.b(7)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(7)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.b(7)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(7)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.b(8) 
-	# KickStart Actions: 
+# 4.B.4.b(8)
+# KickStart Actions:
 
 
 # 4.B.4.b(9)
@@ -2676,29 +2599,29 @@ include lnx00580
 # 4.B.4.b(10) 
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.b(10)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(10)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.b(10)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(10)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-		# 4.B.4.b(10)(b)(1)
-		# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(10)(b)(1)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-		# 4.B.4.b(10)(b)(2)
-		# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(10)(b)(2)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-		# 4.B.4.b(10)(b)(3)
-		# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(10)(b)(3)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 # 4.B.4.b(11) 
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.b(11)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(11)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 4.B.4.b(11)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 4.B.4.b(11)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 
 ##########################################################################
@@ -2707,80 +2630,80 @@ include lnx00580
 # 5.B.3.a(1)
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(1)(a)
-	# KickStart Actions:  None 
+# 5.B.3.a(1)(a)
+# KickStart Actions:  None
 
-	# 5.B.3.a(1)(b)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(1)(b)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(1)(c)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(1)(c)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(1)(d)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(1)(d)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
 # 5.B.3.a(2)
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(2)(a)
-	# KickStart Actions:  None
+# 5.B.3.a(2)(a)
+# KickStart Actions:  None
 
-	# 5.B.3.a(2)(b)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(2)(b)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-		# 5.B.3.a(2)(b)(1)
-		# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(2)(b)(1)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-		# 5.B.3.a(2)(b)(2)
-		# KickStart Actions:  
+# 5.B.3.a(2)(b)(2)
+# KickStart Actions:
 
 # 5.B.3.a(3)
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(3)(a)
-	# KickStart Actions:  None
+# 5.B.3.a(3)(a)
+# KickStart Actions:  None
 
-	# 5.B.3.a(3)(b)
-	# KickStart Actions:  None
+# 5.B.3.a(3)(b)
+# KickStart Actions:  None
 
 # 5.B.3.a(4)
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(4)(a)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(4)(a)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(4)(b)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(4)(b)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
 # 5.B.3.a(5)
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(5)(a)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(5)(a)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-		# 5.B.3.a(5)(a)(1)
-		# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(5)(a)(1)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-		# 5.B.3.a(5)(a)(2)
-		# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(5)(a)(2)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-		# 5.B.3.a(5)(a)(3)
-		# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(5)(a)(3)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(5)(b)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(5)(b)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
 # 5.B.3.a(6)
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(6)(a)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(6)(a)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(6)(b)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(6)(b)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(6)(c)
-	# KickStart Actions:  None - PROCEDURAL REQUIREMENT
+# 5.B.3.a(6)(c)
+# KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
 # 5.B.3.a(7)
 # KickStart Actions:  None
@@ -2797,11 +2720,11 @@ include lnx00580
 # 5.B.3.a(11)
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
 
-	# 5.B.3.a(11)(a)
-	# KickStart Actions:  None
+# 5.B.3.a(11)(a)
+# KickStart Actions:  None
 
-	# 5.B.3.a(11)(b)
-	# KickStart Actions:  None
+# 5.B.3.a(11)(b)
+# KickStart Actions:  None
 
 # 5.B.3.b
 # KickStart Actions:  None - PROCEDURAL REQUIREMENT
@@ -2828,41 +2751,41 @@ include lnx00580
 # 6.B.3.a(2)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(2)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(2)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(2)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(2)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(2)(c)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(2)(c)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(2)(d)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(2)(d)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 # 6.B.3.a(3)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(3)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(3)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(3)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(3)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(3)(c)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(3)(c)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(3)(d)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(3)(d)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 # 6.B.3.a(4)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(4)(a)
-	# KickStart Actions: None
+# 6.B.3.a(4)(a)
+# KickStart Actions: None
 
-	# 6.B.3.a(4)(b)
-	# KickStart Actions: None
+# 6.B.3.a(4)(b)
+# KickStart Actions: None
 
 # 6.B.3.a(5)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
@@ -2873,14 +2796,14 @@ include lnx00580
 # 6.B.3.a(7)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(7)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(7)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(7)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(7)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.a(7)(c)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.a(7)(c)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 # 6.B.3.a(8)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
@@ -2906,15 +2829,14 @@ include lnx00580
 # 6.B.3.b(2)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.b(2)(a)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.b(2)(a)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
-	# 6.B.3.b(2)(b)
-	# KickStart Actions: None - PROCEDURAL REQUIREMENT
+# 6.B.3.b(2)(b)
+# KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 # 6.B.3.b(3)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
-
 
 
 ##########################################################################
@@ -2974,17 +2896,17 @@ include lnx00580
 
 # 7.B.2.h
 # KickStart Actions: None 
-	
-	# Implemented in GEN000980
-	# Implemented in GEN002720
-	# Implemented in GEN002740
-	# Implemented in GEN002780
-	# Implemented in GEN003660
+
+# Implemented in GEN000980
+# Implemented in GEN002720
+# Implemented in GEN002740
+# Implemented in GEN002780
+# Implemented in GEN003660
 
 # 7.B.2.i(1)
 # KickStart Actions: None
 
-	# Implemented in GEN006620
+# Implemented in GEN006620
 
 # 7.B.2.i(2)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
@@ -2998,7 +2920,7 @@ include lnx00580
 # 7.B.2.i(4)
 # KickStart Actions: None
 
-	# Implemented in GEN000980
+# Implemented in GEN000980
 
 # 7.B.2.i(5)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
@@ -3071,10 +2993,10 @@ include lnx00580
 
 # 7.B.4.b(6)
 # KickStart Actions: 
- 
+
 # 7.B.4.b(7)
 # KickStart Actions: 
-  
+
 # 7.B.4.c
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
@@ -3089,7 +3011,7 @@ include lnx00580
 
 # 7.C.2.a
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
- 
+
 # 7.C.2.a(1)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
@@ -3101,28 +3023,28 @@ include lnx00580
 
 # 7.C.2.b
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
- 
+
 # 7.D.2.a
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
-  
+
 # 7.D.2.b
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
-  
+
 # 7.D.2.c
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
-  
+
 # 7.D.2.d
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
 
 # 7.D.2.e
 # KickStart Actions: 
- 
+
 # 7.D.3.a
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
- 
+
 # 7.D.3.b(1)
 # KickStart Actions: None - PROCEDURAL REQUIREMENT
- 
+
 # 7.D.3.b(2)
 # KickStart Actions: 
 

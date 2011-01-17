@@ -2,7 +2,7 @@
 
 set_unless[:clip][:platform] = :redhat
 
-node[:clip][:redhat][:install][:packages] = %w[
+set_unless[:clip][:redhat][:install][:packages] = %w[
 	 auditlibs-devel
 	 autoconf
 	 automake
